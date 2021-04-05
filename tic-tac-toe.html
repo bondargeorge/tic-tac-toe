@@ -72,6 +72,18 @@
         return false;
       }
 
+      function printWinningMessage(winner) {
+        return document.getElementById("winningMessage").innerHTML = ("Congratulations! " + winner + "'s win!");
+      }
+
+      function printDrawMessage() {
+        return document.getElementById("winningMessage").innerHTML = ("Draw!");
+      }
+
+      function enableRestartButton() {
+        return document.getElementById("restartBtn").disabled = false;
+      }
+
       function checkWin() {
         for (var i = 0; i < 8; ++i) {
           var counterX = 0, counterO = 0;
@@ -80,22 +92,22 @@
               ++counterX;
               if (counterX == 3) {
                 gameOver = 1;
-                document.getElementById("winningMessage").innerHTML = ("Congratulations! X's win!");
-                document.getElementById("restartBtn").disabled = false;
+                printWinningMessage("X");
+                enableRestartButton();
               }
             } else if (marks[winningCombinations[i][j]] == 2 && gameOver == 0) {
               ++counterO;
               if (counterO == 3) {
                 gameOver = 1;
-                document.getElementById("winningMessage").innerHTML = ("Congratulations! O's win!");
-                document.getElementById("restartBtn").disabled = false;
+                printWinningMessage("O");
+                enableRestartButton();
               }
             }
           }
         }
         if (gameOver == 0 && markedRounds % 9 == 0) {
-          document.getElementById("winningMessage").innerHTML = ("Draw!");
-          document.getElementById("restartBtn").disabled = false;
+          printDrawMessage();
+          enableRestartButton();
         }
       }
 
